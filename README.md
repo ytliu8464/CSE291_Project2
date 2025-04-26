@@ -1,10 +1,10 @@
 # CSE291_Project#2
 
 
-| Script                 | Purpose                                                                                                                                                                         |
-|------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`netlist2graph.py`** | Parse the netlist to a hypergraph and output:<br>  • `hypergraph.txt` – a compact hypergraph of the netlist<br>  • `vertex_info.txt` – [vertex_ID, vertex_name, is_fixed, x, y] |
-| **`loc2def.py`**       | Update 3_2_place_iop.def using the predicted **movable cell** coordinates. Replace `UNPLACED` components with `PLACED ( x y ) N`.                                               |
+| Script                 | Purpose                                                                                                                                                                                   |
+|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`netlist2graph.py`** | Transform the netlist to a hypergraph |
+| **`loc2def.py`**       | Read the predicted initial locations back into def file.        |                                                                                                                          |
 
 ---
 
@@ -38,10 +38,10 @@ This script parsers the netlist to a hypergraph
 ## 2. `loc2def.py`
 
 This script updates the DEF file (3_2_place_iop.def) by embedding predicted locations for movable cells.
-* Reads a CSV file containing (x, y) coordinate pairs for all movable cells.
-  *  [Note] Coordinates include only movable cells, and their order must matches the order of components listed in the COMPONENTS section.
-* Modifies the DEF file, replacing UNPLACED components with the predicted locations.
 
+* Input: 
+  * A CSV file containing (x, y) coordinate pairs for all movable cells.
+    *  [Note] Coordinates include only movable cells, and their order must matches the order of components listed in the COMPONENTS section.
   * The original `3_2_place_iop.def`
 
     ```
@@ -50,8 +50,9 @@ This script updates the DEF file (3_2_place_iop.def) by embedding predicted loca
     - _2977_ INV_X1 + UNPLACED ;
     - _2978_ BUF_X1 + UNPLACED ;
     ```
-    
-  * The modified `3_2_place_iop.def`
+
+* Output:   
+  * Modified `3_2_place_iop.def`
 
     ```
     - _2975_ INV_X1 + PLACED ( 1192114 2709123 ) N ;
