@@ -1,19 +1,19 @@
 # CSE291_Project#2
 
-This repo contains two scripts using Python3 
+This repo contains two Python3 scripts
 
-| Script                 | Purpose                                                                                                                                                             |
-|------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`netlist2graph.py`** | Parse the netlist to a hypergraph:<br>  • `hypergraph.txt` – a compact hypergraph of the netlist<br>  • `vertex_info.txt` – [vertex_ID, vertex_name, is_fixed, x, y] |
-| **`loc2def.py`**       | Take a list of predicted **movable cell** coordinates and patch them back into the .def file, replacing every `UNPLACED` component with `PLACED ( x y ) N`.      |
+| Script                 | Purpose                                                                                                                                                                         |
+|------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`netlist2graph.py`** | Parse the netlist to a hypergraph and output:<br>  • `hypergraph.txt` – a compact hypergraph of the netlist<br>  • `vertex_info.txt` – [vertex_ID, vertex_name, is_fixed, x, y] |
+| **`loc2def.py`**       | Update def file using your predicted **movable cell** coordinates. Replace `UNPLACED` components with `PLACED ( x y ) N`.                                                       |
 
 ---
 
 ## 1. `netlist2graph.py`
 
-* Scans the `COMPONENTS`, `PINS`, and `NETS` sections of the input DEF.
-* Assigns every **component** and **IO pin** a contiguous vertex ID.
-* Saves:
+This script parsers the def file to a hypergraph, extracting data from the `COMPONENTS`, `PINS`, and `NETS` sections.
+
+* Outputs:
   * `hypergraph.txt`
 
     ```
@@ -37,10 +37,9 @@ This repo contains two scripts using Python3
     ```
 ## 2. `loc2def.py`
 
-* Reads a CSV / Numpy text file containing one (x, y) pair for every
-movable cells (order must match the order in the DEF’s COMPONENTS
-section).
-* Re-writes the DEF file, replacing each UNPLACED with the predicted locations.
+This script updates the DEF file by embedding predicted locations for movable cells.
+* Reads a CSV / Numpy text file containing (x, y) coordinate pairs for all movable cells.
+* Modifies the DEF file, replacing UNPLACED components with the predicted locations.
 
   * The original `3_2_place_iop.def`
 
