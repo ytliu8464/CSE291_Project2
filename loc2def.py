@@ -22,7 +22,7 @@ def save_locations_to_def(
         Path to the source `.def` file (i.e., the original 3_2_place_iop.def).
     positions : Sequence[Sequence[float]]
         Iterable shaped (n, 2) containing (x, y) coordinates for *n* movable cells.
-        [Note] Positions only include all movable cells and the order is the same with the order in COMPONENTS
+        [Note] Locations include only movable cells, and their order must matches the order of components listed in the COMPONENTS section.
     out_path : Path
         Destination path for the new `.def` file. The function appends the
         `.def` suffix automatically if it is missing.
@@ -62,7 +62,7 @@ def save_locations_to_def(
 
 if __name__ == '__main__':
     ### example
-    locations = np.loadtxt("predicted_locations.csv")  # shape (n, 2)
+    locations = np.loadtxt("xxx.csv", delimiter=',')  # shape (n, 2)
     save_locations_to_def(
         Path("original_3_2_place_iop.def"),
         locations,
