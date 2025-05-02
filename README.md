@@ -61,3 +61,17 @@ This script updates the DEF file (3_2_place_iop.def) by embedding predicted loca
     - _2978_ BUF_X1 + PLACED ( 1375933 2889801 ) N ;
     ```
 
+## How to use them?
+
+* Use OpenROAD to generate the 3_2_place_iop.def.
+
+* Use netlist2graph.py to convert the .def file into a hypergraph format.
+
+* Extract necessary features (you could modify or write your own parsers to extract additional features if needed).
+
+* Train models based on these features.
+
+* Use loc2def.py to write the predicted cell locations back into the .def file.
+
+* Replace the original .def in OpenROAD and run `global_placement -skip_initial_place -incremental` to continue the flow and obtain the detailed placement results
+
